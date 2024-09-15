@@ -4,7 +4,7 @@ import Section from "../components/Section";
 import { Colors, ReloadInstructions } from "react-native/Libraries/NewAppScreen";
 import CustomIcon from "../utils/CustomIcon";
 
-function HomeScreen(){
+function HomeScreen({ navigation }: any){
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -21,7 +21,7 @@ function HomeScreen(){
         <View style={{ backgroundColor: isDarkMode ? Colors.black : Colors.white, }}>
           <Section title="Step One">
             Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits <CustomIcon name='search' size={17} style={{ color: "red"}} />
+            screen and then come back to see your edits <CustomIcon name='search' size={17} style={{ color: "red"}} onPress={() => navigation.navigate("Search")} />
           </Section>
           <Section title="See Your Changes">
             <ReloadInstructions />
