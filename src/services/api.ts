@@ -19,3 +19,172 @@ export async function fetchGenre() {
       throw error;
     }
 }
+
+
+export async function fetchNowPlaying() {
+  const url = `${DB_URL}/movie/now_playing`;
+  try {
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const data = await response.json();
+
+    console.log("Fetched Data => ", data)
+    
+    return data;
+  } catch (error) {
+    console.error('Error fetching genres:', error);
+    throw error;
+  }
+}
+
+export async function fetchPopular() {
+  const url = `${DB_URL}/movie/now_playing`;
+  try {
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const data = await response.json();
+
+    console.log("Fetched Data => ", data)
+    
+    return data;
+  } catch (error) {
+    console.error('Error fetching genres:', error);
+    throw error;
+  }
+}
+
+export async function fetchTopRated() {
+  const url = `${DB_URL}/movie/top_rated`;
+  try {
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const data = await response.json();
+
+    console.log("Fetched Data => ", data)
+    
+    return data;
+  } catch (error) {
+    console.error('Error fetching genres:', error);
+    throw error;
+  }
+}
+
+export async function fetchUpcoming() {
+  const url = `${DB_URL}/movie/upcoming`;
+  try {
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const data = await response.json();
+
+    console.log("Fetched Data => ", data)
+    
+    return data;
+  } catch (error) {
+    console.error('Error fetching genres:', error);
+    throw error;
+  }
+}
+
+export async function fetchMovieDetails(movieId: number | string) {
+  const url = `${DB_URL}/movie/${movieId}`;
+  try {
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const data = await response.json();
+
+    console.log("Fetched Data => ", data)
+    
+    return data;
+  } catch (error) {
+    console.error('Error fetching genres:', error);
+    throw error;
+  }
+}
+
+export async function fetchFavouriteMovies(accountId: number | string) {
+  const url = `${DB_URL}/account/${accountId}/favorite/movies`;
+  try {
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const data = await response.json();
+
+    console.log("Fetched Data => ", data)
+    
+    return data;
+  } catch (error) {
+    console.error('Error fetching genres:', error);
+    throw error;
+  }
+}
+
+export async function addToFavouriteMovie(accountId: string){
+  const url = `${DB_URL}/account/${accountId}/favorite`
+  try {
+    const response = await fetch(url, { method: "POST", headers: {
+      "Content-Type": "application/json", // Add content type for JSON
+    }, })
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const data = await response.json();
+
+    console.log("Fetched Data => ", data)
+    
+    return data;
+  }catch(error){
+    console.log("Error fetching ", error)
+    throw error
+  }
+}
+
+export async function rateMovie(movieId: string, rating: any){
+  const url = `${DB_URL}/movie/${movieId}/rating`
+  try {
+    const response = await fetch(url, {
+      method: "POST", headers: {
+      "Content-Type": "application/json",
+      }, 
+      body: JSON.stringify({ body: rating })
+   })
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const data = await response.json();
+
+    console.log("Fetched Data => ", data)
+    
+    return data;
+  }catch(error){
+    console.log("Error fetching ", error)
+    throw error
+  }
+}
+
