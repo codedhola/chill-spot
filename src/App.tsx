@@ -11,18 +11,22 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './screens/HomeScreen';
 import SearchScreen from './screens/SearchScreen';
 import TabNavigator from './navigator/TabNavigator';
+import LandingScreen from './screens/LandingScreen';
+import { PaperProvider } from 'react-native-paper';
 
 const Stack = createNativeStackNavigator();
 
 function App(): React.JSX.Element {
 
   return (
-    <NavigationContainer >
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Search" component={TabNavigator} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <PaperProvider>
+      <NavigationContainer >
+        <Stack.Navigator>
+          <Stack.Screen name="index" component={LandingScreen} />
+          <Stack.Screen name="Search" component={TabNavigator} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </PaperProvider>
   );
 }
 
