@@ -4,15 +4,11 @@ export async function fetchGenre() {
     const url = `${DB_URL}/genre/movie/list?api_key=${TMDB_API_KEY}&language=en-US`;
     try {
       const response = await fetch(url);
-      
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       
-      const data = await response.json();
-
-      console.log("Fetched Data => ", data)
-      
+      const data = await response.json();      
       return data.genres;
     } catch (error) {
       console.error('Error fetching genres:', error);
@@ -20,21 +16,16 @@ export async function fetchGenre() {
     }
 }
 
-
 export async function fetchNowPlaying() {
-  const url = `${DB_URL}/movie/now_playing`;
+  const url = `${DB_URL}/movie/now_playing?api_key=${TMDB_API_KEY}&language=en-US`;
   try {
     const response = await fetch(url);
-    
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     
     const data = await response.json();
-
-    console.log("Fetched Data => ", data)
-    
-    return data;
+    return data.results;
   } catch (error) {
     console.error('Error fetching genres:', error);
     throw error;
@@ -42,7 +33,7 @@ export async function fetchNowPlaying() {
 }
 
 export async function fetchPopular() {
-  const url = `${DB_URL}/movie/now_playing`;
+  const url = `${DB_URL}/movie/now_playing?api_key=${TMDB_API_KEY}&language=en-US`;
   try {
     const response = await fetch(url);
     
@@ -62,7 +53,7 @@ export async function fetchPopular() {
 }
 
 export async function fetchTopRated() {
-  const url = `${DB_URL}/movie/top_rated`;
+  const url = `${DB_URL}/movie/top_rated?api_key=${TMDB_API_KEY}&language=en-US`;
   try {
     const response = await fetch(url);
     
@@ -82,7 +73,7 @@ export async function fetchTopRated() {
 }
 
 export async function fetchUpcoming() {
-  const url = `${DB_URL}/movie/upcoming`;
+  const url = `${DB_URL}/movie/upcoming?api_key=${TMDB_API_KEY}&language=en-US`;
   try {
     const response = await fetch(url);
     
@@ -102,7 +93,7 @@ export async function fetchUpcoming() {
 }
 
 export async function fetchMovieDetails(movieId: number | string) {
-  const url = `${DB_URL}/movie/${movieId}`;
+  const url = `${DB_URL}/movie/${movieId}?api_key=${TMDB_API_KEY}&language=en-US`;
   try {
     const response = await fetch(url);
     
@@ -122,7 +113,7 @@ export async function fetchMovieDetails(movieId: number | string) {
 }
 
 export async function fetchFavouriteMovies(accountId: number | string) {
-  const url = `${DB_URL}/account/${accountId}/favorite/movies`;
+  const url = `${DB_URL}/account/${accountId}/favorite/movies?api_key=${TMDB_API_KEY}&language=en-US`;
   try {
     const response = await fetch(url);
     
@@ -142,7 +133,7 @@ export async function fetchFavouriteMovies(accountId: number | string) {
 }
 
 export async function addToFavouriteMovie(accountId: string){
-  const url = `${DB_URL}/account/${accountId}/favorite`
+  const url = `${DB_URL}/account/${accountId}/favorite?api_key=${TMDB_API_KEY}&language=en-US`
   try {
     const response = await fetch(url, { method: "POST", headers: {
       "Content-Type": "application/json", // Add content type for JSON
@@ -164,7 +155,7 @@ export async function addToFavouriteMovie(accountId: string){
 }
 
 export async function rateMovie(movieId: string, rating: any){
-  const url = `${DB_URL}/movie/${movieId}/rating`
+  const url = `${DB_URL}/movie/${movieId}/rating?api_key=${TMDB_API_KEY}&language=en-US`
   try {
     const response = await fetch(url, {
       method: "POST", headers: {

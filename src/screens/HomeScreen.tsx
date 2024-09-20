@@ -4,7 +4,9 @@ import Section from "../components/Section";
 import { Colors, ReloadInstructions } from "react-native/Libraries/NewAppScreen";
 import CustomIcon from "../utils/CustomIcon";
 import { useEffect, useState } from "react";
-import { fetchGenre } from "../services/api";
+import { fetchGenre, fetchNowPlaying } from "../services/api";
+import { SearchBar } from "react-native-screens";
+import SearchInput from "../components/SearchInput";
 
 function HomeScreen({ navigation }: any){
   const isDarkMode = useColorScheme() === 'dark';
@@ -12,7 +14,7 @@ function HomeScreen({ navigation }: any){
 
   useEffect(() => {
     (async function(){
-      const res = await fetchGenre()
+      const res = await fetchNowPlaying()
       setData(res)
     })() 
   }, [])
@@ -29,17 +31,7 @@ function HomeScreen({ navigation }: any){
       barStyle={isDarkMode ? 'light-content' : 'dark-content'}
       backgroundColor={backgroundStyle.backgroundColor}
       />
-      <ScrollView contentInsetAdjustmentBehavior="automatic" style={backgroundStyle}>
-        <View style={{ backgroundColor: isDarkMode ? Colors.black : Colors.white, }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits <CustomIcon name='search' size={17} style={{ color: "red"}} onPress={() => navigation.navigate("Search")} />
-          </Section>
-        </View>
-        <View>
-
-        </View>
-      </ScrollView>
+      <SearchInput />
     </View>
   )
 }
