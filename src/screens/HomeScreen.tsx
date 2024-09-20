@@ -19,7 +19,6 @@ function HomeScreen({ navigation }: any){
     })() 
   }, [])
 
-  console.log("Home screen Data => ", data)
 
   const backgroundStyle = {
       backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
